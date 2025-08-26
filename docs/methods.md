@@ -1,0 +1,23 @@
+Cardlink API methods implementation.
+
+
+- [`CardLink().create_bill()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createBill.py)
+- [`CardLink().get_bill()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/billStatus.py)
+- [`CardLink().toggle_activity()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/toggleActivity.py)
+- [`CardLink().search_bill()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/searchBill.py)
+- [`CardLink().bill_payments()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/billPayments.py)
+- [`CardLink().refund_full()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createFullRefund.py)
+- [`CardLink().refund_partial()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createPartialRefund.py)
+- [`CardLink().get_refund()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/refundStatus.py)
+- [`CardLink().search_refund()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/searchRefund.py)
+- [`CardLink().personal_payout()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createPersonalPayout.py)
+- [`CardLink().create_payout_credit_card()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createRegularPayout.py)
+- [`CardLink().create_payout_sbp()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createRegularPayout.py)
+- [`CardLink().create_payout_crypto()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createRegularPayout.py)
+- [`CardLink().create_payout_steam()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/createRegularPayout.py)
+- [`CardLink().get_payout()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/payoutStatus.py)
+- [`CardLink().search_payout()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/searchPayout.py)
+- [`CardLink().get_balance()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/getBalance.py)
+- [`CardLink().get_banks()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/getBanks.py)
+- [`CardLink().get_payment()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/paymentStatus.py)
+- [`CardLink().search_payments()`](https://github.com/LaFTonTechnology/cardlink/blob/main/cardlink/methods/searchPayments.py)

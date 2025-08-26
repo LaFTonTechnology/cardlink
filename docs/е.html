@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>CardLink · Usage Examples</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#121822; --muted:#8aa0b4; --text:#e6eef6; --accent:#6aa8ff; --border:#1c2532;
+      --code-bg:#0e141c; --badge:#1b2736; --ok:#2ecc71; --warn:#f1c40f; --err:#e74c3c;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#ffffff; --card:#f7f9fc; --muted:#475569; --text:#0f172a; --accent:#2563eb; --border:#e2e8f0;
+        --code-bg:#f1f5f9; --badge:#e2e8f0;
+      }
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;}
+    .container{max-width:1000px;margin:40px auto;padding:0 20px;}
+    h1{font-size:2rem;margin:0 0 12px;}
+    p.lead{color:var(--muted);margin:0 0 24px;}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin:20px 0 32px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;}
+    .badge{display:inline-block;background:var(--badge);border:1px solid var(--border);color:var(--muted);padding:2px 8px;border-radius:999px;font-size:12px}
+    details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0}
+    details summary{cursor:pointer;font-weight:600;outline:none}
+    pre{position:relative;background:var(--code-bg);border:1px solid var(--border);border-radius:12px;padding:14px 12px;overflow:auto;margin:12px 0 0}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:13px;}
+    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+    .btn{border:1px solid var(--border);background:transparent;color:var(--text);padding:6px 10px;border-radius:10px;cursor:pointer}
+    .btn:hover{border-color:var(--accent)}
+    .pill{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--border)}
+    .pill.ok{background:color-mix(in srgb, var(--ok) 15%, transparent);border-color:color-mix(in srgb, var(--ok) 30%, var(--border))}
+    .pill.warn{background:color-mix(in srgb, var(--warn) 15%, transparent);border-color:color-mix(in srgb, var(--warn) 30%, var(--border))}
+    .pill.err{background:color-mix(in srgb, var(--err) 15%, transparent);border-color:color-mix(in srgb, var(--err) 30%, var(--border))}
+    .muted{color:var(--muted)}
+    .toc a{color:inherit;text-decoration:none}
+    .toc li{margin:6px 0}
+    .section{margin:32px 0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Usage Examples</h1>
+    <p class="lead">Готовые примеры использования <strong>CardLink</strong> с асинхронным клиентом.</p>
+
+    <div class="card">
+      <div class="row">
+        <span class="badge">Быстрый старт</span>
+        <span class="muted">Асинхронные функции · Python 3.10+</span>
+      </div>
+      <pre><code>from cardlink import CardLink
+
+cardlink = CardLink(token="YOUR_API_TOKEN", shop_id="YOUR_SHOP_ID")
+
+# Все методы ниже предполагаются внутри async-функции:
+# import asyncio
+# async def main(): ...
+# asyncio.run(main())</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>Содержание</h2>
+      <ul class="toc">
+        <li><a href="#create-bill">Создание счёта</a></li>
+        <li><a href="#get-balance">Получение баланса</a></li>
+        <li><a href="#get-bill">Получение счёта</a></li>
+        <li><a href="#bill-payments">Платежи по счёту</a></li>
+        <li><a href="#refunds">Возвраты (полный/частичный)</a></li>
+        <li><a href="#get-refund">Получение возврата</a></li>
+        <li><a href="#search-refund">Поиск возвратов</a></li>
+        <li><a href="#personal-payout">Персональная выплата</a></li>
+        <li><a href="#payout-variants">Выплаты: карта / СБП / крипто / Steam</a></li>
+        <li><a href="#get-payout">Получение выплаты</a></li>
+        <li><a href="#search-payout">Поиск выплат</a></li>
+        <li><a href="#get-banks">Справочник банков</a></li>
+        <li><a href="#search-payments">Поиск платежей</a></li>
+        <li><a href="#get-payment">Получение платежа</a></li>
+      </ul>
+    </div>
+
+    <details id="create-bill" open>
+      <summary>Создание счёта <span class="pill ok">create_bill</span></summary>
+      <pre><code>from cardlink import CardLink
+
+cardlink = CardLink(token="your_api_token", shop_id="your_shop_id")
+
+async def main():
+    bill = await cardlink.create_bill(
+        amount=100,
+        order_id="ORDER123",
+        description="Оплата заказа",
+        type="normal",  # или "multi"
+        currency_in="RUB",
+        custom="meta-data",
+        payer_pays_commission=0,
+        payer_email="user@example.com",
+        name="Иван Иванов",
+        ttl=3600,
+        success_url="https://example.com/success",
+        fail_url="https://example.com/fail",
+        payment_method="BANK_CARD",  # или "SBP"
+        request_fields_email=True,
+        request_fields_phone=False,
+        request_fields_name=False,
+        request_fields_comment=False,
+        items=[{"name":"Товар","price":100,"qty":1}],
+    )
+    print(bill)</code></pre>
+    </details>
+
+    <details id="get-balance">
+      <summary>Получение баланса <span class="pill ok">get_balance</span></summary>
+      <pre><code>from cardlink import CardLink
+
+cardlink = CardLink(token="your_api_token", shop_id="your_shop_id")
+
+async def main():
+    balances = await cardlink.get_balance()
+    print(balances)</code></pre>
+    </details>
+
+    <details id="get-bill">
+      <summary>Получение счёта <span class="pill ok">get_bill</span></summary>
+      <pre><code>from cardlink import CardLink
+
+cardlink = CardLink(token="your_api_token", shop_id="your_shop_id")
+
+async def main():
+    bill = await cardlink.get_bill(id="qwerty12345")
+    print(bill)</code></pre>
+    </details>
+
+    <details id="bill-payments">
+      <summary>Платежи по счёту <span class="pill ok">bill_payments</span></summary>
+      <pre><code>async def main():
+    payments = await cardlink.bill_payments(
+        id="qwerty12345",
+        per_page=50,
+        cursor=None
+    )
+    print(payments)</code></pre>
+    </details>
+
+    <details id="refunds">
+      <summary>Возвраты: полный и частичный <span class="pill warn">refund_full / refund_partial</span></summary>
+      <pre><code># Полный возврат
+async def main():
+    refund = await cardlink.refund_full(payment_id="pay_123")
+    print(refund)
+
+# Частичный возврат
+async def main():
+    refund = await cardlink.refund_partial(
+        payment_id="pay_123",
+        amount=25.5
+    )
+    print(refund)</code></pre>
+    </details>
+
+    <details id="get-refund">
+      <summary>Получение возврата <span class="pill ok">get_refund</span></summary>
+      <pre><code>async def main():
+    refund = await cardlink.get_refund(id="refund_12345")
+    print(refund)</code></pre>
+    </details>
+
+    <details id="search-refund">
+      <summary>Поиск возвратов <span class="pill ok">search_refund</span></summary>
+      <pre><code>import datetime as dt
+
+async def main():
+    result = await cardlink.search_refund(
+        payment_id="pay_123",
+        start_date=dt.datetime(2025, 1, 1),
+        finish_date=dt.datetime(2025, 2, 1),
+        per_page=100,
+        cursor=None
+    )
+    print(result)</code></pre>
+    </details>
+
+    <details id="personal-payout">
+      <summary>Персональная выплата <span class="pill ok">personal_payout</span></summary>
+      <pre><code>async def main():
+    payout = await cardlink.personal_payout(
+        amount=150.0,
+        payout_account_id="acc_42",
+        account_currency="RUB",  # опционально: 'USD', 'EUR'
+        recipient_pays_commission=False,
+        order_id="ORDER-OUT-1"
+    )
+    print(payout)</code></pre>
+    </details>
+
+    <details id="payout-variants">
+      <summary>Выплаты: карта / СБП / крипто / Steam <span class="pill ok">create_payout_* </span></summary>
+      <pre><code># На банковскую карту
+async def main():
+    payout = await cardlink.create_payout_credit_card(
+        amount=500,
+        currency="RUB",
+        account_identifier="4111111111111111",
+        card_holder="IVAN IVANOV",
+        account_currency="RUB",
+        recipient_pays_commission=False,
+        order_id="PO-1001"
+    )
+    print(payout)
+
+# Через СБП
+async def main():
+    payout = await cardlink.create_payout_sbp(
+        amount=500,
+        currency="RUB",
+        account_identifier="+79990000000",  # телефон/идентификатор
+        account_bank="TCSBANK",
+        account_currency="RUB",
+        recipient_pays_commission=False,
+        order_id="PO-1002"
+    )
+    print(payout)
+
+# Криптовалюта
+async def main():
+    payout = await cardlink.create_payout_crypto(
+        amount=100,
+        currency="USD",
+        account_identifier="TLX...TRXADDRESS",
+        account_network="TRX",  # или "ETH"
+        account_currency="USD",
+        recipient_pays_commission=True,
+        order_id="PO-1003"
+    )
+    print(payout)
+
+# Steam
+async def main():
+    payout = await cardlink.create_payout_steam(
+        amount=300,
+        currency="RUB",
+        account_identifier="steam_7656119...",
+        account_currency="RUB",
+        recipient_pays_commission=False,
+        order_id="PO-1004"
+    )
+    print(payout)</code></pre>
+    </details>
+
+    <details id="get-payout">
+      <summary>Получение выплаты <span class="pill ok">get_payout</span></summary>
+      <pre><code>async def main():
+    payout = await cardlink.get_payout(
+        id="payout_12345",
+        # или:
+        # order_id="PO-1001",
+    )
+    print(payout)</code></pre>
+    </details>
+
+    <details id="search-payout">
+      <summary>Поиск выплат <span class="pill ok">search_payout</span></summary>
+      <pre><code>import datetime as dt
+
+async def main():
+    payouts = await cardlink.search_payout(
+        start_date=dt.datetime(2025, 3, 1),
+        finish_date=dt.datetime(2025, 3, 31),
+        per_page=100,
+        cursor=None
+    )
+    print(payouts)</code></pre>
+    </details>
+
+    <details id="get-banks">
+      <summary>Справочник банков <span class="pill ok">get_banks</span></summary>
+      <pre><code>async def main():
+    banks = await cardlink.get_banks()
+    print(banks)</code></pre>
+    </details>
+
+    <details id="search-payments">
+      <summary>Поиск платежей <span class="pill ok">search_payments</span></summary>
+      <pre><code>import datetime as dt
+
+async def main():
+    payments = await cardlink.search_payments(
+        start_date=dt.datetime(2025, 1, 1),
+        finish_date=dt.datetime(2025, 1, 31),
+        shop_id=None,
+        per_page=200,
+        cursor=None
+    )
+    print(payments)</code></pre>
+    </details>
+
+    <details id="get-payment">
+      <summary>Получение платежа <span class="pill ok">get_payment</span></summary>
+      <pre><code>async def main():
+    payment = await cardlink.get_payment(
+        id="payment_12345",
+        refunds=True,
+        chargeback=False
+    )
+    print(payment)</code></pre>
+    </details>
+  </div>
+
+  <script>
+    document.querySelectorAll("pre").forEach((pre) => {
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.textContent = "Copy";
+      btn.style.position = "absolute";
+      btn.style.top = "8px";
+      btn.style.right = "8px";
+      btn.addEventListener("click", async () => {
+        const text = pre.innerText.replace(/^Copy$/m, "");
+        try { await navigator.clipboard.writeText(text); btn.textContent = "Copied!"; }
+        catch { btn.textContent = "Failed"; }
+        setTimeout(() => (btn.textContent = "Copy"), 1200);
+      });
+      pre.appendChild(btn);
+    });
+  </script>
+</body>
+</html>

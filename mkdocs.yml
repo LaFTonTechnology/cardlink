@@ -1,0 +1,26 @@
+site_name: cardlink
+
+nav:
+  - Home: index.md
+  - Methods: methods.md
+  - Types: types.md
+  - Examples: examples.md
+
+theme:
+  name: material
+  logo: assets/cardlink-logo.png
+  favicon: images/cardlink-logo.ico
+  palette:
+    primary: indigo
+    accent: pink
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: auto
