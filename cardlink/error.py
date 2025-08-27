@@ -1,6 +1,6 @@
 class APIError(Exception):
     def __init__(self, message: str, code: int | None = None):
-        super().__init__(message)   # <-- это важно!
+        super().__init__(message)
         self.code = code
         self.message = message
 
@@ -8,4 +8,3 @@ class APIError(Exception):
         if self.code is not None:
             return f"APIError {self.code}: {self.message}"
         return self.message
-

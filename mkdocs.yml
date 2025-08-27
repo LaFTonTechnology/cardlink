@@ -1,4 +1,8 @@
-site_name: cardlink
+site_name: Cardlink API SDK
+site_description: Python библиотека для работы с Cardlink API
+site_author: LaFTon Technology
+repo_url: https://github.com/LaFTonTechnology/cardlink
+repo_name: cardlink
 
 nav:
   - Home: index.md
@@ -7,6 +11,7 @@ nav:
   - Examples: examples.md
 
 theme:
+  language: ru
   name: material
   logo: assets/cardlink-logo.png
   favicon: images/cardlink-logo.ico

@@ -5,7 +5,7 @@ from cardlink.types import Payout
 
 class BaseSession(ABC):
     """
-    Абстрактный  класс.
+    Абстрактный класс.
     """
 
     def _check_response(self, return_type, code, data, api_method, client):
