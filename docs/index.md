@@ -19,6 +19,14 @@
 
 ---
 
+### 📦 PyPI
+[![Latest Version](https://img.shields.io/pypi/v/cardlink.svg)](https://pypi.org/project/cardlink/)
+
+### 📖 Документация
+[![Docs](https://img.shields.io/badge/docs-online-brightgreen)](https://laftontechnology.github.io/cardlink/)
+
+---
+
 ## 💬 Сообщество
 
 Присоединяйтесь к нашему чату в Telegram: [@pythonCardlink](https://t.me/pythonCardlink)
