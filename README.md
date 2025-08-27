@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn4.telesco.pe/file/GT89qDKoFDd6wDspZ2HmtMHDLSVBXe4C_e5MSPsuBy_nLpNRPgYvoLrRCWfqCYadiLnhvTJMfXnDzR8up-Z7WN3T_IhaUeNQLqj5FCVBZL0-LHKQuYl0i03EiDssF6u-PNVfRDCD_F_FzgyGfQAeWH2fDv0bMxCOR1H_MYoFKXuwlyu7F3NZc5twyxnOWfsRVCmg8gHaZNZLyKVsV8gL1w2vQ_r12IpcCv1sJ6Z_qXMGDbCCDO4edp5FiB7vI-RT0Qui6AgkQ4R_G7twCSRtcMaPFSfiHuTN2K-j6iEKmme297vnIv3PYNUY3MHfUANTshIuzaGqeg_-1fPE-HwNyQ.jpg" width="300"/>
+  <img src="https://raw.githubusercontent.com/LaFTonTechnology/cardlink/main/assets/cardlinkLogo.png" width="300"/>
   <h1 align="center">cardlink</h1>
   <p align="center">Асинхронный Python клиент для <a href="https://cardlink.link/merchant/api">Cardlink API</a></p>
 </p>
