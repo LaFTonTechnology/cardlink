@@ -13,7 +13,7 @@ path = "cardlink/__meta__.py"
 
 [project]
 name = "cardlink"
-version = "1.0.1"
+version = "1.0.4"
 description = "Python SDK for Cardlink API"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,7 +24,7 @@ authors = [
     { name = "LaFTon Technology", email = "laftonsup@gmail.com" }
 ]
 
-keywords = ["cardlink", "Cardlink", "cardlink api", "Cardlink api", "Cardlink API", "Payments", "SDK", "sdk", "api", "API", "Api"]
+keywords = ["Cardlink", "Cardlink API", "Payments", "SDK", "API"]
 
 
 dependencies = [
